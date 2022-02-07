@@ -47,7 +47,8 @@ public class Main {
         String[] words = pattern.split(result);
         String frazaIzSlov = "";
         for (String word : words) {
-            frazaIzSlov += word.toString() + " ";
+            //frazaIzSlov += word.toString() + " ";
+            frazaIzSlov += String.join(" 8", word); // Как работает join???
         }
         return frazaIzSlov;
     }
@@ -55,8 +56,8 @@ public class Main {
 
 
 /*
-Pattern pattern = Pattern.compile("[ ,.!?:]"); // остаются пустые строки
 Регулярные выражения:
+Pattern pattern = Pattern.compile("[ ,.!?:]"); // остаются пустые строки
 Pattern pattern = Pattern.compile("\\s*(\\s|,|!|\\.)\\s*"); // разделитель -> пробел, точка, зпт, !
 \\s     spase
 \\.     точка
