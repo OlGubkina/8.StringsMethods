@@ -11,12 +11,11 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        String imputedText = " one two,three.four:five ";
+        String imputedText = " one two,three.four:five. ";
         System.out.println(imputedText + " <- Source text");
 
         String formatedText = formatText(imputedText);
         System.out.println(formatedText + " <- Разбивка по словам");
-
     }
 
     private static String formatText(String enteredText) {
@@ -29,15 +28,9 @@ public class Main {
         // После точки - слово с большой буквы
         for (int i = 0; i < enteredText.length(); i++) {
             char TekChar = enteredText.charAt(i); // Идём по символьно
-            /* ????????????????
-            if (TekChar == null) {
-                System.out.println("error");
-            }
-
-            //if (TekChar =='.') {       } // Точка и конец фразы. Следующий символ = null?
-             */
-            // i = inputedText.length-1; // так можно выйти из цикла?
-            if (TekChar == '.') {
+            // Если точка и конец фразы выходим из цикла
+            if ((TekChar =='.')&&(i == enteredText.length()-1)) break;
+            else if (TekChar == '.') { ///???? else можно не писать????
                 result += Character.toString(TekChar); // Точка прибавляется к тексту
                 TekChar = enteredText.charAt(i + 1); // Переходим к след символу
                 TekChar = Character.toUpperCase(TekChar); // следующая буква -> Заглавная
