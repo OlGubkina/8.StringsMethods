@@ -30,7 +30,7 @@ public class Main {
             char TekChar = enteredText.charAt(i); // Идём по символьно
             // Если точка и конец фразы выходим из цикла
             if ((TekChar == '.') && (i == enteredText.length() - 1)) break;
-            else if (TekChar == '.') { ///???? else можно не писать????
+            if (TekChar == '.') {
                 result += Character.toString(TekChar); // Точка прибавляется к тексту
                 TekChar = enteredText.charAt(i + 1); // Переходим к след символу
                 TekChar = Character.toUpperCase(TekChar); // следующая буква -> Заглавная
@@ -43,18 +43,12 @@ public class Main {
 
         // Разбиваем на слова по разделителям
         Pattern pattern = Pattern.compile("[ ,.!?:]");
-        //Pattern pattern = Pattern.compile("\\s*(\\s|,|!|\\.)\\s*"); // разделитель -> \\s пробел, \\.точка, зпт, !
         String[] words = pattern.split(result);
         String resultOfMetod = String.join(" ", words);
-        //System.out.println(s111);
-//        String frazaIzSlov = "";
-//        for (String word : words) {
-//            //frazaIzSlov += word.toString() + " ";
-//            frazaIzSlov += String.join(" 8", word); // Как работает join???
-
         return resultOfMetod;
+
     }
-    }
+}
 
 
 
