@@ -29,7 +29,7 @@ public class Main {
         for (int i = 0; i < enteredText.length(); i++) {
             char TekChar = enteredText.charAt(i); // Идём по символьно
             // Если точка и конец фразы выходим из цикла
-            if ((TekChar =='.')&&(i == enteredText.length()-1)) break;
+            if ((TekChar == '.') && (i == enteredText.length() - 1)) break;
             else if (TekChar == '.') { ///???? else можно не писать????
                 result += Character.toString(TekChar); // Точка прибавляется к тексту
                 TekChar = enteredText.charAt(i + 1); // Переходим к след символу
@@ -45,14 +45,17 @@ public class Main {
         Pattern pattern = Pattern.compile("[ ,.!?:]");
         //Pattern pattern = Pattern.compile("\\s*(\\s|,|!|\\.)\\s*"); // разделитель -> \\s пробел, \\.точка, зпт, !
         String[] words = pattern.split(result);
-        String frazaIzSlov = "";
-        for (String word : words) {
-            //frazaIzSlov += word.toString() + " ";
-            frazaIzSlov += String.join(" 8", word); // Как работает join???
-        }
-        return frazaIzSlov;
+        String resultOfMetod = String.join(" ", words);
+        //System.out.println(s111);
+//        String frazaIzSlov = "";
+//        for (String word : words) {
+//            //frazaIzSlov += word.toString() + " ";
+//            frazaIzSlov += String.join(" 8", word); // Как работает join???
+
+        return resultOfMetod;
     }
-}
+    }
+
 
 
 /*
