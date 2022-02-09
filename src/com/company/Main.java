@@ -1,21 +1,52 @@
 package com.company;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
-/**
-* Разбить текст по словам (в тексте могут встречаться разные разделители, напр. пробел, запятая, точка, двоеточие)
-* Привести первую букву первого слова текста в заглавную
-* Каждое слово после точки должно начинаться с заглавной буквы
-* Результат обьеденить обратно в строку (String.join()) и вернуть из метода
+/** ДЗ №7
+ * Разбить текст по словам (в тексте могут встречаться разные разделители, напр. пробел, запятая, точка, двоеточие)
+ * Привести первую букву первого слова текста в заглавную
+ * Каждое слово после точки должно начинаться с заглавной буквы
+ * Результат обьеденить обратно в строку (String.join()) и вернуть из метода
+
+ ** ДЗ №11
+ * добавить возможность считывать исходный текст из файла и сохранять отредактированный текст в новый файл
+ * создать новый файл InputText.txt и поместить в него исходный текст
+ * считать текст из файла
+ * применить к нему алгоритм из дз №7
+ * результат сохранить в новый файл OutputText.txt
+ * *по желанию программу упаковать в jar и проверить ее работоспособность с помощью консольной комманды
 */
 
 public class Main {
     public static void main(String[] args) {
-        String imputedText = " one two,three.four:five. ";
+    String textFromFile = "";
+        try (FileReader reader = new FileReader("C:\\8.StringsMethods\\src\\Attachments\\InputText.txt")) {
+            {
+                int c;
+                while((c=reader.read())!=-1){ // Идём по символам до конца файла (-1)
+                    textFromFile += Character.toString((char) c);  // Символ -> в строку (символ из инта)
+                }
+            }
+        } catch (IOException ioException) {System.out.println("Error: reader  new FileReader");}
+
+        String imputedText = textFromFile; //String imputedText = " one two,three.four:five. ";
         System.out.println(imputedText + " <- Source text");
 
         String formatedText = formatText(imputedText);
-        System.out.println(formatedText + " <- Разбивка по словам");
+
+
+        // Путь к файлу , false = файл будет перезаписываться
+        try (FileWriter writer = new FileWriter("C:\\8.StringsMethods\\src\\Attachments\\OutputText.txt", false))
+        {
+           writer.write(formatedText);
+           System.out.println(formatedText + " <- Разбивка по словам (записано в файл)");
+        } catch (IOException ioException) {
+            System.out.println("Error: write to file Output.txt");
+        }
     }
 
     private static String formatText(String enteredText) {
